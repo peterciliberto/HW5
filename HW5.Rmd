@@ -1,0 +1,215 @@
+---
+title: "HW5"
+author: "Peter Ciliberto"
+output: html_document
+---
+
+## Problem 0 
+
+https://github.com/peterciliberto/HW5.git
+
+# Part 1
+
+## Problem 1 
+
+```{r}
+rankcor <-function(x, y){
+  n <-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks <-rank(x)
+  y.ranks <-rank(y)
+  
+  mean.x <-mean(x.ranks)
+  mean.y <-mean(y.ranks)
+  
+  covariance.term <-cov(x.ranks-mean.x, y-mean.y)
+  
+  sd.x <-sd(x.ranks)
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+```
+
+The first line of the function sets n to the legnth of x
+The second line ensures that the funciton will not run if the length of y does not equal n, which is the length of x
+The third and fourth lines gives a rank to the x and y values based on the rank correlation.
+The fifth and sixth lines compute the mean of the ranked x and y values.
+The seventh line computes the covariance between x and y 
+The eigth and ninth lines compute the standard deviation of x and y 
+The tenth line computes the rank correlation.
+
+## Problem 2
+
+```{r}
+x <- c(2,4,6,8)
+y <- c(64,36,16,4)
+rankcor <-function(x, y){
+  n <-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks <-rank(x)
+  y.ranks <-rank(y)
+  
+  mean.x <-mean(x.ranks)
+  mean.y <-mean(y.ranks)
+  
+  covariance.term <-cov(x.ranks-mean.x, y-mean.y)
+  
+  sd.x <-sd(x.ranks)
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)
+```
+
+The value that we get for the rank correlation is -20
+
+## Problem 3 
+
+This answer must be wrong because the rank correlation only varies from -1 to 1
+
+## Problem 4 
+ 
+```{r}
+x <- c(1,2,3,4)
+y <- c(1,2,3,4)
+
+rankcor <-function(x, y){
+  n <-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks <-rank(x)
+  y.ranks <-rank(y)
+  
+  mean.x <-mean(x.ranks)
+  mean.y <-mean(y.ranks)
+  
+  covariance.term <-cov(x.ranks-mean.x, y-mean.y)
+  
+  sd.x <-sd(x.ranks)
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)
+```
+
+I know this answer is correct because the vector x and vector y that I chose have a perfect linear relationship. 
+
+# Part 2
+
+## Problem 5 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
