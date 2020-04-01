@@ -458,6 +458,20 @@ rankcor(x,y)</code></pre>
 <h1>Part 2</h1>
 <div id="problem-5" class="section level2">
 <h2>Problem 5</h2>
+<pre class="r"><code>test.rankcor &lt;- function(fun = rankor){
+  
+}</code></pre>
+</div>
+<div id="problem-6" class="section level2">
+<h2>Problem 6</h2>
+<p>The bug in the function occurs in the seventh line of the code where the covariance is computed. The code reads:</p>
+<p>covariance.term &lt;-cov(x.ranks-mean.x, y-mean.y)</p>
+<p>where it should read:</p>
+<p>covariance.term &lt;-cov(x.ranks-mean.x, y.ranks-mean.y)</p>
+<p>This bug is the result of using the vector y instead of y.ranks to calculate the covariance.</p>
+</div>
+<div id="problem-7" class="section level2">
+<h2>Problem 7</h2>
 </div>
 </div>
 

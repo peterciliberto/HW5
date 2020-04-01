@@ -106,7 +106,29 @@ I know this answer is correct because the vector x and vector y that I chose hav
 
 ## Problem 5 
 
+```{r}
+test.rankcor <- function(fun = rankor){
+  
+}
+```
 
+## Problem 6 
+
+The bug in the function occurs in the seventh line of the code where the covariance is computed. The code reads:
+
+covariance.term <-cov(x.ranks-mean.x, y-mean.y) 
+
+where it should read:
+
+covariance.term <-cov(x.ranks-mean.x, y.ranks-mean.y)
+
+This bug is the result of using the vector y instead of y.ranks to calculate the covariance.
+
+## Problem 7 
+
+```{r}
+
+```
 
 
 
