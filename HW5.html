@@ -484,9 +484,7 @@ test.rankcor(rankcor)</code></pre>
 </div>
 <div id="problem-7" class="section level2">
 <h2>Problem 7</h2>
-<pre class="r"><code>x &lt;- c(2,4,6,8)
-y &lt;- c(64,36,16,4)
-rankcor &lt;-function(x, y){
+<pre class="r"><code>rankcor &lt;-function(x, y){
   n &lt;-length(x)
   stopifnot(length(y)==n)
   
@@ -524,9 +522,7 @@ test.rankcor(rankcor)</code></pre>
 <div id="problem-8" class="section level2">
 <h2>Problem 8</h2>
 <p>The average rank of a vector is always n/2 + 1/2 because the rank() function assigns a rank to each value in a vector a rank from 1:n. The average rank of a vector is then the mean of vector of ranks. Using the formula n/2 + 1/2 we will always get the same result from a vector of ranks as using mean() for the vector of ranks.</p>
-<pre class="r"><code>x &lt;- c(2,4,6,8)
-y &lt;- c(64,36,16,4)
-rankcor &lt;-function(x, y){
+<pre class="r"><code>rankcor &lt;-function(x, y){
   n &lt;-length(x)
   stopifnot(length(y)==n)
   
@@ -556,6 +552,7 @@ rankcor(x,y)</code></pre>
   
   set.1.test &lt;- all.equal(-1, set.1)
   set.2.test &lt;- all.equal(-1, set.2)
+  
   return(set.1.test == set.2.test)
 }
 test.rankcor(rankcor)</code></pre>
@@ -564,9 +561,7 @@ test.rankcor(rankcor)</code></pre>
 <div id="problem-9" class="section level2">
 <h2>Problem 9</h2>
 <p>It is unnecessary to subtract off the mean rank while using cov() because the mean rank for x and y will always be the same in this function.</p>
-<pre class="r"><code>x &lt;- c(2,4,6,8)
-y &lt;- c(64,36,16,4)
-rankcor &lt;-function(x, y){
+<pre class="r"><code>rankcor &lt;-function(x, y){
   n &lt;-length(x)
   stopifnot(length(y)==n)
   
@@ -603,6 +598,26 @@ test.rankcor(rankcor)</code></pre>
 </div>
 <div id="problem-10" class="section level2">
 <h2>Problem 10</h2>
+<pre class="r"><code>rankcor &lt;-function(x, y){
+  n &lt;-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks &lt;-rank(x)
+  y.ranks &lt;-rank(y)
+  
+  mean.x &lt;- n/2 + 1/2
+  mean.y &lt;- n/2 + 1/2
+  
+  covariance.term &lt;-cov(x.ranks, y.ranks)
+  
+  sd.x &lt;- sd(x.ranks)
+  sd.y &lt;- sd(y.ranks)
+  
+  rank.cor &lt;- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)</code></pre>
+<pre><code>## [1] -1</code></pre>
 </div>
 </div>
 
