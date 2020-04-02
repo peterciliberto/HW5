@@ -96,7 +96,8 @@ rankcor <-function(x, y){
   
   rank.cor <- covariance.term/(sd.x*sd.y)
   
-  return(rank.cor)}
+  return(rank.cor)
+}
 rankcor(x,y)
 ```
 
@@ -107,9 +108,20 @@ I know this answer is correct because the vector x and vector y that I chose hav
 ## Problem 5 
 
 ```{r}
-test.rankcor <- function(fun = rankor){
+test.rankcor <- function(fun = rankcor){
+  x.1 <- c(2, 4, 6, 8)
+  y.1 <- c(64, 36, 16, 4)
+  x.2 <- c(1, 2, 3, 4)
+  y.2 <- c(4, 3, 2, 1)
+  set.1 <- fun(x.1, y.1)
+  set.2 <- fun(x.2, y.2)
   
+  set.1.test <- all.equal(-1, set.1)
+  set.2.test <- all.equal(-1, set.2)
+  return(set.1.test == set.2.test)
 }
+test.rankcor(rankcor)
+
 ```
 
 ## Problem 6 
@@ -148,11 +160,25 @@ rankcor <-function(x, y){
   
   return(rank.cor)}
 rankcor(x,y)
+
+test.rankcor <- function(fun = rankcor){
+  x.1 <- c(2, 4, 6, 8)
+  y.1 <- c(64, 36, 16, 4)
+  x.2 <- c(1, 2, 3, 4)
+  y.2 <- c(4, 3, 2, 1)
+  set.1 <- fun(x.1, y.1)
+  set.2 <- fun(x.2, y.2)
+  
+  set.1.test <- all.equal(-1, set.1)
+  set.2.test <- all.equal(-1, set.2)
+  return(set.1.test == set.2.test)
+}
+test.rankcor(rankcor)
 ```
 
 ## Problem 8 
 
-The average rank of a vector is always n/2 + 1/2 because the rank() function assigns a rank to each value in a vector a rank from 1:n. The average rank of a vector is then the mean of the ranks.
+The average rank of a vector is always n/2 + 1/2 because the rank() function assigns a rank to each value in a vector a rank from 1:n. The average rank of a vector is then the mean of vector of ranks. Using the formula n/2 + 1/2 we will always get the same result from a vector of ranks as using mean() for the vector of ranks.
 
 ```{r}
 x <- c(2,4,6,8)
@@ -164,9 +190,10 @@ rankcor <-function(x, y){
   x.ranks <-rank(x)
   y.ranks <-rank(y)
   
-  mean <- n/2 + 1/2
+  mean.x <- n/2 + 1/2
+  mean.y <- n/2 + 1/2
   
-  covariance.term <-cov(x.ranks-mean, y.ranks-mean)
+  covariance.term <-cov(x.ranks-mean.x, y.ranks-mean.y)
   
   sd.x <-sd(x.ranks)
   sd.y <-sd(y.ranks)
@@ -175,6 +202,20 @@ rankcor <-function(x, y){
   
   return(rank.cor)}
 rankcor(x,y)
+
+test.rankcor <- function(fun = rankcor){
+  x.1 <- c(2, 4, 6, 8)
+  y.1 <- c(64, 36, 16, 4)
+  x.2 <- c(1, 2, 3, 4)
+  y.2 <- c(4, 3, 2, 1)
+  set.1 <- fun(x.1, y.1)
+  set.2 <- fun(x.2, y.2)
+  
+  set.1.test <- all.equal(-1, set.1)
+  set.2.test <- all.equal(-1, set.2)
+  return(set.1.test == set.2.test)
+}
+test.rankcor(rankcor)
 ```
 
 ## Problem 9 
@@ -191,6 +232,9 @@ rankcor <-function(x, y){
   x.ranks <-rank(x)
   y.ranks <-rank(y)
   
+  mean.x <- n/2 + 1/2
+  mean.y <- n/2 + 1/2
+  
   covariance.term <-cov(x.ranks, y.ranks)
   
   sd.x <-sd(x.ranks)
@@ -200,6 +244,20 @@ rankcor <-function(x, y){
   
   return(rank.cor)}
 rankcor(x,y)
+
+test.rankcor <- function(fun = rankcor){
+  x.1 <- c(2, 4, 6, 8)
+  y.1 <- c(64, 36, 16, 4)
+  x.2 <- c(1, 2, 3, 4)
+  y.2 <- c(4, 3, 2, 1)
+  set.1 <- fun(x.1, y.1)
+  set.2 <- fun(x.2, y.2)
+  
+  set.1.test <- all.equal(-1, set.1)
+  set.2.test <- all.equal(-1, set.2)
+  return(set.1.test == set.2.test)
+}
+test.rankcor(rankcor)
 ```
 
 ## Problem 10

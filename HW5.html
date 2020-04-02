@@ -448,7 +448,8 @@ rankcor &lt;-function(x, y){
   
   rank.cor &lt;- covariance.term/(sd.x*sd.y)
   
-  return(rank.cor)}
+  return(rank.cor)
+}
 rankcor(x,y)</code></pre>
 <pre><code>## [1] -1</code></pre>
 <p>I know this answer is correct because the vector x and vector y that I chose have a perfect negative linear relationship.</p>
@@ -458,9 +459,20 @@ rankcor(x,y)</code></pre>
 <h1>Part 2</h1>
 <div id="problem-5" class="section level2">
 <h2>Problem 5</h2>
-<pre class="r"><code>test.rankcor &lt;- function(fun = rankor){
+<pre class="r"><code>test.rankcor &lt;- function(fun = rankcor){
+  x.1 &lt;- c(2, 4, 6, 8)
+  y.1 &lt;- c(64, 36, 16, 4)
+  x.2 &lt;- c(1, 2, 3, 4)
+  y.2 &lt;- c(4, 3, 2, 1)
+  set.1 &lt;- fun(x.1, y.1)
+  set.2 &lt;- fun(x.2, y.2)
   
-}</code></pre>
+  set.1.test &lt;- all.equal(-1, set.1)
+  set.2.test &lt;- all.equal(-1, set.2)
+  return(set.1.test == set.2.test)
+}
+test.rankcor(rankcor)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="problem-6" class="section level2">
 <h2>Problem 6</h2>
@@ -494,10 +506,24 @@ rankcor &lt;-function(x, y){
   return(rank.cor)}
 rankcor(x,y)</code></pre>
 <pre><code>## [1] -1</code></pre>
+<pre class="r"><code>test.rankcor &lt;- function(fun = rankcor){
+  x.1 &lt;- c(2, 4, 6, 8)
+  y.1 &lt;- c(64, 36, 16, 4)
+  x.2 &lt;- c(1, 2, 3, 4)
+  y.2 &lt;- c(4, 3, 2, 1)
+  set.1 &lt;- fun(x.1, y.1)
+  set.2 &lt;- fun(x.2, y.2)
+  
+  set.1.test &lt;- all.equal(-1, set.1)
+  set.2.test &lt;- all.equal(-1, set.2)
+  return(set.1.test == set.2.test)
+}
+test.rankcor(rankcor)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="problem-8" class="section level2">
 <h2>Problem 8</h2>
-<p>The average rank of a vector is always n/2 + 1/2 because the rank() function assigns a rank to each value in a vector a rank from 1:n. The average rank of a vector is then the mean of the ranks.</p>
+<p>The average rank of a vector is always n/2 + 1/2 because the rank() function assigns a rank to each value in a vector a rank from 1:n. The average rank of a vector is then the mean of vector of ranks. Using the formula n/2 + 1/2 we will always get the same result from a vector of ranks as using mean() for the vector of ranks.</p>
 <pre class="r"><code>x &lt;- c(2,4,6,8)
 y &lt;- c(64,36,16,4)
 rankcor &lt;-function(x, y){
@@ -507,9 +533,10 @@ rankcor &lt;-function(x, y){
   x.ranks &lt;-rank(x)
   y.ranks &lt;-rank(y)
   
-  mean &lt;- n/2 + 1/2
+  mean.x &lt;- n/2 + 1/2
+  mean.y &lt;- n/2 + 1/2
   
-  covariance.term &lt;-cov(x.ranks-mean, y.ranks-mean)
+  covariance.term &lt;-cov(x.ranks-mean.x, y.ranks-mean.y)
   
   sd.x &lt;-sd(x.ranks)
   sd.y &lt;-sd(y.ranks)
@@ -519,6 +546,20 @@ rankcor &lt;-function(x, y){
   return(rank.cor)}
 rankcor(x,y)</code></pre>
 <pre><code>## [1] -1</code></pre>
+<pre class="r"><code>test.rankcor &lt;- function(fun = rankcor){
+  x.1 &lt;- c(2, 4, 6, 8)
+  y.1 &lt;- c(64, 36, 16, 4)
+  x.2 &lt;- c(1, 2, 3, 4)
+  y.2 &lt;- c(4, 3, 2, 1)
+  set.1 &lt;- fun(x.1, y.1)
+  set.2 &lt;- fun(x.2, y.2)
+  
+  set.1.test &lt;- all.equal(-1, set.1)
+  set.2.test &lt;- all.equal(-1, set.2)
+  return(set.1.test == set.2.test)
+}
+test.rankcor(rankcor)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="problem-9" class="section level2">
 <h2>Problem 9</h2>
@@ -532,6 +573,9 @@ rankcor &lt;-function(x, y){
   x.ranks &lt;-rank(x)
   y.ranks &lt;-rank(y)
   
+  mean.x &lt;- n/2 + 1/2
+  mean.y &lt;- n/2 + 1/2
+  
   covariance.term &lt;-cov(x.ranks, y.ranks)
   
   sd.x &lt;-sd(x.ranks)
@@ -542,6 +586,20 @@ rankcor &lt;-function(x, y){
   return(rank.cor)}
 rankcor(x,y)</code></pre>
 <pre><code>## [1] -1</code></pre>
+<pre class="r"><code>test.rankcor &lt;- function(fun = rankcor){
+  x.1 &lt;- c(2, 4, 6, 8)
+  y.1 &lt;- c(64, 36, 16, 4)
+  x.2 &lt;- c(1, 2, 3, 4)
+  y.2 &lt;- c(4, 3, 2, 1)
+  set.1 &lt;- fun(x.1, y.1)
+  set.2 &lt;- fun(x.2, y.2)
+  
+  set.1.test &lt;- all.equal(-1, set.1)
+  set.2.test &lt;- all.equal(-1, set.2)
+  return(set.1.test == set.2.test)
+}
+test.rankcor(rankcor)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="problem-10" class="section level2">
 <h2>Problem 10</h2>
