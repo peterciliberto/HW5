@@ -77,7 +77,7 @@ This answer must be wrong because the rank correlation only varies from -1 to 1
  
 ```{r}
 x <- c(1,2,3,4)
-y <- c(1,2,3,4)
+y <- c(4,3,2,1)
 
 rankcor <-function(x, y){
   n <-length(x)
@@ -100,7 +100,7 @@ rankcor <-function(x, y){
 rankcor(x,y)
 ```
 
-I know this answer is correct because the vector x and vector y that I chose have a perfect linear relationship. 
+I know this answer is correct because the vector x and vector y that I chose have a perfect negative linear relationship. 
 
 # Part 2
 
@@ -127,14 +127,86 @@ This bug is the result of using the vector y instead of y.ranks to calculate the
 ## Problem 7 
 
 ```{r}
-
+x <- c(2,4,6,8)
+y <- c(64,36,16,4)
+rankcor <-function(x, y){
+  n <-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks <-rank(x)
+  y.ranks <-rank(y)
+  
+  mean.x <-mean(x.ranks)
+  mean.y <-mean(y.ranks)
+  
+  covariance.term <-cov(x.ranks-mean.x, y.ranks-mean.y)
+  
+  sd.x <-sd(x.ranks)
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)
 ```
 
+## Problem 8 
 
+The average rank of a vector is always n/2 + 1/2 because the rank() function assigns a rank to each value in a vector a rank from 1:n. The average rank of a vector is then the mean of the ranks.
 
+```{r}
+x <- c(2,4,6,8)
+y <- c(64,36,16,4)
+rankcor <-function(x, y){
+  n <-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks <-rank(x)
+  y.ranks <-rank(y)
+  
+  mean <- n/2 + 1/2
+  
+  covariance.term <-cov(x.ranks-mean, y.ranks-mean)
+  
+  sd.x <-sd(x.ranks)
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)
+```
 
+## Problem 9 
 
+It is unnecessary to subtract off the mean rank while using cov() because the mean rank for x and y will always be the same in this function. 
 
+```{r}
+x <- c(2,4,6,8)
+y <- c(64,36,16,4)
+rankcor <-function(x, y){
+  n <-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks <-rank(x)
+  y.ranks <-rank(y)
+  
+  covariance.term <-cov(x.ranks, y.ranks)
+  
+  sd.x <-sd(x.ranks)
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)
+```
+
+## Problem 10
+
+```{r}
+
+```
 
 
 

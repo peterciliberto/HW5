@@ -429,7 +429,7 @@ rankcor(x,y)</code></pre>
 <div id="problem-4" class="section level2">
 <h2>Problem 4</h2>
 <pre class="r"><code>x &lt;- c(1,2,3,4)
-y &lt;- c(1,2,3,4)
+y &lt;- c(4,3,2,1)
 
 rankcor &lt;-function(x, y){
   n &lt;-length(x)
@@ -450,8 +450,8 @@ rankcor &lt;-function(x, y){
   
   return(rank.cor)}
 rankcor(x,y)</code></pre>
-<pre><code>## [1] 1</code></pre>
-<p>I know this answer is correct because the vector x and vector y that I chose have a perfect linear relationship.</p>
+<pre><code>## [1] -1</code></pre>
+<p>I know this answer is correct because the vector x and vector y that I chose have a perfect negative linear relationship.</p>
 </div>
 </div>
 <div id="part-2" class="section level1">
@@ -472,6 +472,79 @@ rankcor(x,y)</code></pre>
 </div>
 <div id="problem-7" class="section level2">
 <h2>Problem 7</h2>
+<pre class="r"><code>x &lt;- c(2,4,6,8)
+y &lt;- c(64,36,16,4)
+rankcor &lt;-function(x, y){
+  n &lt;-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks &lt;-rank(x)
+  y.ranks &lt;-rank(y)
+  
+  mean.x &lt;-mean(x.ranks)
+  mean.y &lt;-mean(y.ranks)
+  
+  covariance.term &lt;-cov(x.ranks-mean.x, y.ranks-mean.y)
+  
+  sd.x &lt;-sd(x.ranks)
+  sd.y &lt;-sd(y.ranks)
+  
+  rank.cor &lt;- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)</code></pre>
+<pre><code>## [1] -1</code></pre>
+</div>
+<div id="problem-8" class="section level2">
+<h2>Problem 8</h2>
+<p>The average rank of a vector is always n/2 + 1/2 because the rank() function assigns a rank to each value in a vector a rank from 1:n. The average rank of a vector is then the mean of the ranks.</p>
+<pre class="r"><code>x &lt;- c(2,4,6,8)
+y &lt;- c(64,36,16,4)
+rankcor &lt;-function(x, y){
+  n &lt;-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks &lt;-rank(x)
+  y.ranks &lt;-rank(y)
+  
+  mean &lt;- n/2 + 1/2
+  
+  covariance.term &lt;-cov(x.ranks-mean, y.ranks-mean)
+  
+  sd.x &lt;-sd(x.ranks)
+  sd.y &lt;-sd(y.ranks)
+  
+  rank.cor &lt;- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)</code></pre>
+<pre><code>## [1] -1</code></pre>
+</div>
+<div id="problem-9" class="section level2">
+<h2>Problem 9</h2>
+<p>It is unnecessary to subtract off the mean rank while using cov() because the mean rank for x and y will always be the same in this function.</p>
+<pre class="r"><code>x &lt;- c(2,4,6,8)
+y &lt;- c(64,36,16,4)
+rankcor &lt;-function(x, y){
+  n &lt;-length(x)
+  stopifnot(length(y)==n)
+  
+  x.ranks &lt;-rank(x)
+  y.ranks &lt;-rank(y)
+  
+  covariance.term &lt;-cov(x.ranks, y.ranks)
+  
+  sd.x &lt;-sd(x.ranks)
+  sd.y &lt;-sd(y.ranks)
+  
+  rank.cor &lt;- covariance.term/(sd.x*sd.y)
+  
+  return(rank.cor)}
+rankcor(x,y)</code></pre>
+<pre><code>## [1] -1</code></pre>
+</div>
+<div id="problem-10" class="section level2">
+<h2>Problem 10</h2>
 </div>
 </div>
 
